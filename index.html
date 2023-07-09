@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>名札</title>
+  <style>
+    .card {
+      width: 90mm;
+      height: 50mm;
+      border: 1px solid #dddddd;
+      display: inline-flex;
+      align-items: center;
+      page-break-inside: avoid;
+    }
+
+    .name {
+      font-size: 20pt;
+      margin: auto;
+      text-align: center;
+    }
+
+    .icon {
+      margin: 0 0 0 10mm;
+    }
+
+    .icon>img {
+      height: 25mm;
+      width: 25mm;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="cards"></div>
+
+  <script>
+    const renderParticipants = (participants) => {
+      document.querySelector('#cards').replaceChildren();
+
+      for (const p of participants) {
+        const card = document.createElement("div");
+        card.classList.add("card");
+
+        const icon = document.createElement("div");
+        icon.classList.add("icon");
+
+        const image = document.createElement("img");
+        image.src = p.icon;
+        icon.appendChild(image);
+
+        const name = document.createElement("div");
+        name.classList.add("name");
+        name.innerText = p.name;
+
+        card.appendChild(icon);
+        card.appendChild(name);
+
+        document.querySelector('#cards').appendChild(card);
+      }
+    }
+
+    renderParticipants([
+      {
+        name: '名札 太郎',
+        icon: 'https://placehold.co/100'
+      },
+    ]);
+  </script>
+</body>
+
+</html>
